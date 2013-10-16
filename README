@@ -1,0 +1,5 @@
+How to get GMTL:
+
+1) download the .deb from http://sourceforge.net/projects/ggt/
+
+2) you may have to symlink /usr/include/gmtl-0.5.2/gmtl to /usr/include/gmtl or change the #include lines
