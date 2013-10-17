@@ -20,6 +20,7 @@ using namespace gmtl;
 */
 void generate_camera(camera * cam, float radius, float height, float speed)
 {
+	printf("generating camera\n");
 	cam->radius = radius;
 	cam->angle = 0;
 	cam->height = height;
@@ -46,13 +47,13 @@ void view(camera * cam)
 {
 	glMatrixMode(GL_MODELVIEW);
 	//camera translations are opposite of model translations
-	Vec3f trans = makeTrans<Vec3f>(cam->tf);
-	gluLookAt(
-			trans[0], trans[1], trans[2],
+//	Vec3f trans = makeTrans<Vec3f>(cam->tf);
+/*	gluLookAt(
+			1.0, 1.0, 1.0,
 			0, 0, 0,
 			0.0, 0.0, 1.0
-			);
-	glTranslatef( -trans[0], -trans[1], -trans[2]);
+			);*/
+	glTranslatef( 0.0, 0.0, -1.0);
 }
 
 /*

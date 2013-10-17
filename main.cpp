@@ -12,6 +12,7 @@
 
 
 #include "camera.h"
+#include "model.h"
 
 using namespace std;
 
@@ -20,6 +21,7 @@ struct controller
 	int frame;
 	camera * cam;
 	double last_T;
+	gl_model object;
 
 };
 
@@ -71,7 +73,8 @@ void display()
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	view(cont.cam);
-//	draw(cont.c);
+	glColor3f(1.0, 1.0, 1.0);
+	draw(cont.object);
 
 	glFlush();
 }
@@ -99,11 +102,14 @@ void init()
 
 	glMatrixMode (GL_PROJECTION);
 	glLoadIdentity ();
-	gluPerspective(45, 1, .01, 1000);
+	//gluPerspective(45, 1, .01, 1000);
+	glOrtho(-1.0, 1.0, -1.0, 1.0, -1.0, 1.0);
 	glClearColor (0.0, 0.0, 0.0, 0.0);
 	glColor3f(1.0, 1.0, 1.0);
 
 	cont.cam = (camera *) malloc(sizeof(camera));
+	model m = generate_model();
+	cont.object = create_buffer(m);
 	generate_camera(cont.cam, 4, 1, 0.01);
 
 	glutMainLoop();
